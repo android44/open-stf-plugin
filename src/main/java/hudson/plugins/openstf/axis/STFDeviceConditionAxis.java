@@ -14,6 +14,7 @@ import org.kohsuke.stapler.QueryParameter;
 import org.kohsuke.stapler.StaplerRequest;
 
 import java.util.List;
+import java.util.Objects;
 
 public class STFDeviceConditionAxis extends Axis {
 
@@ -23,6 +24,19 @@ public class STFDeviceConditionAxis extends Axis {
   public STFDeviceConditionAxis(String name, String type, List<String> values) {
     super(name, values);
     this.type = type;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    STFDeviceConditionAxis strings = (STFDeviceConditionAxis) o;
+    return Objects.equals(type, strings.type);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(type);
   }
 
   @Extension

@@ -127,26 +127,26 @@ public class STFBuildWrapper extends BuildWrapper {
     if (androidSdk == null) {
       if (!emulatorDescriptor.shouldInstallSdk) {
         // Couldn't find an SDK, don't want to install it, give up
-        log(logger, hudson.plugins.android_emulator.Messages.SDK_TOOLS_NOT_FOUND());
+      //  log(logger, hudson.plugins.android_emulator.Messages.SDK_TOOLS_NOT_FOUND());
         build.setResult(Result.NOT_BUILT);
         return null;
       }
 
       // Ok, let's download and install the SDK
-      log(logger, hudson.plugins.android_emulator.Messages.INSTALLING_SDK());
+//      log(logger, hudson.plugins.android_emulator.Messages.INSTALLING_SDK());
       try {
         androidSdk = SdkInstaller.install(launcher, listener, null);
       } catch (SdkInstallationException ex) {
-        log(logger, hudson.plugins.android_emulator.Messages.SDK_INSTALLATION_FAILED(), ex);
+      //  log(logger, hudson.plugins.android_emulator.Messages.SDK_INSTALLATION_FAILED(), ex);
         build.setResult(Result.NOT_BUILT);
         return null;
       }
     }
 
-    String displayHome =
-        androidSdk.hasKnownRoot()
-            ? androidSdk.getSdkRoot() : hudson.plugins.android_emulator.Messages.USING_PATH();
-    log(logger, hudson.plugins.android_emulator.Messages.USING_SDK(displayHome));
+//    String displayHome =
+//        androidSdk.hasKnownRoot()
+//            ? androidSdk.getSdkRoot() : hudson.plugins.android_emulator.Messages.USING_PATH();
+   // log(logger, hudson.plugins.android_emulator.Messages.USING_SDK(displayHome));
 
     STFConfig stfConfig = new STFConfig(useSpecificKey, adbPublicKey, adbPrivateKey,
         deviceFilter, deviceReleaseWaitTime);
@@ -318,7 +318,7 @@ public class STFBuildWrapper extends BuildWrapper {
 
       // Archive the logs
       if (logcatFile.length() != 0) {
-        log(remote.logger(), hudson.plugins.android_emulator.Messages.ARCHIVING_LOG());
+//        log(remote.logger(), hudson.plugins.android_emulator.Messages.ARCHIVING_LOG());
         logcatFile.copyTo(new FilePath(artifactsDir).child("logcat.txt"));
       }
       logcatFile.delete();
